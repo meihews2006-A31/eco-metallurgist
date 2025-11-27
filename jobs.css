@@ -1,0 +1,150 @@
+/* Jobs page styles */
+
+body {
+  background: var(--gray-100);
+}
+
+.jobs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.jobs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.jobs-header h1 {
+  font-size: 28px;
+  color: var(--primary);
+  margin: 0;
+}
+
+.logo {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.filters-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.filter-group .form-label {
+  margin: 0;
+  font-size: 14px;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.job-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.job-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+}
+
+.job-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  font-weight: 600;
+}
+
+.job-url {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin: var(--spacing-xs) 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.job-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--gray-200);
+}
+
+.job-progress {
+  margin-top: var(--spacing-sm);
+}
+
+.job-progress-label {
+  font-size: 11px;
+  color: var(--gray-600);
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+}
+
+.job-actions .btn {
+  flex: 1;
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--gray-500);
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+/* Job status-specific styles */
+.job-card.status-pending {
+  border-left: 4px solid var(--gray-400);
+}
+
+.job-card.status-running {
+  border-left: 4px solid var(--primary);
+}
+
+.job-card.status-done {
+  border-left: 4px solid var(--success);
+}
+
+.job-card.status-error {
+  border-left: 4px solid var(--error);
+}

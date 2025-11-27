@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LCA Assistant - Jobs</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="jobs.css">
+</head>
+<body>
+  <div class="jobs-container">
+    <header class="jobs-header">
+      <div class="flex items-center gap-sm">
+        <div class="logo">📋</div>
+        <h1>Analysis Jobs</h1>
+      </div>
+      <button id="refreshBtn" class="btn btn-secondary btn-sm">
+        <span>🔄</span> Refresh
+      </button>
+    </header>
+
+    <section class="filters-section card">
+      <div class="flex justify-between items-center">
+        <div class="filter-group">
+          <label class="form-label">Filter by Status:</label>
+          <select id="statusFilter" class="form-select" style="width: auto;">
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="running">Running</option>
+            <option value="done">Done</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+        <button id="clearAllBtn" class="btn btn-sm btn-secondary">
+          Clear All
+        </button>
+      </div>
+    </section>
+
+    <section id="jobsListSection" class="jobs-list-section">
+      <div id="jobsGrid" class="jobs-grid">
+        <p class="text-muted text-center">No jobs yet</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="jobs.js"></script>
+</body>
+</html>

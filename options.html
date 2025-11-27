@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LCA Assistant - Options</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <!-- Header -->
+    <header class="options-header">
+      <div class="flex items-center gap-sm">
+        <div class="logo">🔄</div>
+        <h1>LCA Assistant Settings</h1>
+      </div>
+    </header>
+
+    <!-- Backend Configuration -->
+    <section class="card">
+      <h2>🔌 Backend Configuration</h2>
+      <p class="text-muted mb-md">Configure the backend API endpoint for LCA analysis.</p>
+      
+      <div class="form-group">
+        <label class="form-label" for="backendUrl">
+          Backend URL
+          <span class="text-muted">(e.g., https://your-backend.com)</span>
+        </label>
+        <input 
+          type="url" 
+          id="backendUrl" 
+          class="form-input" 
+          placeholder="https://api.example.com"
+        >
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="apiKey">
+          API Key
+          <span class="text-muted">(stored locally, never shared)</span>
+        </label>
+        <div class="input-with-toggle">
+          <input 
+            type="password" 
+            id="apiKey" 
+            class="form-input" 
+            placeholder="Enter your API key"
+          >
+          <button id="toggleApiKey" class="btn-icon" title="Toggle visibility">
+            👁️
+          </button>
+        </div>
+        <p class="help-text">
+          ⚠️ API keys are stored locally in your browser. For production, use short-lived tokens.
+        </p>
+      </div>
+      
+      <div class="flex items-center gap-sm">
+        <input type="checkbox" id="requireSeleniumDefault">
+        <label for="requireSeleniumDefault" style="font-size: 14px; cursor: pointer;">
+          Enable Selenium by default (deep page extraction)
+        </label>
+      </div>
+    </section>
+
+    <!-- Testing & Development -->
+    <section class="card">
+      <h2>🧪 Testing & Development</h2>
+      
+      <div class="flex items-center gap-sm mb-md">
+        <input type="checkbox" id="mockModeDefault">
+        <label for="mockModeDefault" style="font-size: 14px; cursor: pointer;">
+          Enable Mock Mode by default (for demos)
+        </label>
+      </div>
+      
+      <div class="test-section">
+        <h3>Connection Test</h3>
+        <p class="text-muted mb-sm">Verify your backend is reachable.</p>
+        <button id="testConnectionBtn" class="btn btn-secondary">
+          <span>🔍</span> Test Connection
+        </button>
+        <div id="testResult" class="test-result" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="actions-section">
+      <button id="saveBtn" class="btn btn-success">
+        <span>💾</span> Save Settings
+      </button>
+      <button id="clearBtn" class="btn btn-secondary">
+        <span>🗑️</span> Clear All Data
+      </button>
+    </section>
+
+    <!-- Status Message -->
+    <div id="statusMessage" class="status-message" style="display: none;"></div>
+
+    <!-- Jobs Management -->
+    <section class="card">
+      <h2>📋 Recent Jobs</h2>
+      <p class="text-muted mb-md">View and manage your analysis jobs.</p>
+      
+      <div id="jobsList" class="jobs-list">
+        <p class="text-muted text-center">No jobs yet</p>
+      </div>
+      
+      <button id="clearJobsBtn" class="btn btn-sm btn-secondary mt-md">
+        Clear Job History
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="options-footer">
+      <p class="text-muted text-center">
+        LCA & Circularity Assistant v1.0.0<br>
+        <a href="https://github.com/yourusername/lca-extension" target="_blank" class="text-primary">
+          Documentation & Support
+        </a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

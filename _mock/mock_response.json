@@ -1,0 +1,129 @@
+{
+  "job_id": "mock-job-12345",
+  "material": "aluminium",
+  "co2_kg": 123.45,
+  "circularity_score": 67,
+  "recycled_percent": 30,
+  "recommendations": [
+    "Increase recycled content to 50% to reduce CO₂ emissions by 25%",
+    "Switch to renewable energy sources for production to cut emissions by 40%",
+    "Optimize transportation routes to reduce distance by 20%",
+    "Implement closed-loop recycling system for end-of-life materials",
+    "Consider using lower-carbon aluminum alloys where specifications allow"
+  ],
+  "raw_json": {
+    "analysis_metadata": {
+      "analyzed_at": "2024-01-15T10:30:00Z",
+      "model_version": "lca-v2.1",
+      "confidence_score": 0.87
+    },
+    "material_composition": {
+      "primary_material": "aluminium",
+      "alloy_type": "6061-T6",
+      "recycled_content": 30,
+      "virgin_content": 70,
+      "trace_elements": {
+        "magnesium": 1.0,
+        "silicon": 0.6,
+        "copper": 0.28
+      }
+    },
+    "energy_analysis": {
+      "total_energy_kwh": 100,
+      "renewable_percentage": 45,
+      "grid_intensity_gco2_kwh": 400,
+      "primary_energy_sources": {
+        "hydro": 25,
+        "natural_gas": 35,
+        "coal": 20,
+        "solar": 15,
+        "wind": 5
+      },
+      "energy_by_phase": {
+        "extraction": 15,
+        "smelting": 60,
+        "forming": 20,
+        "finishing": 5
+      }
+    },
+    "transport_analysis": {
+      "distance_km": 50,
+      "mode": "truck",
+      "emissions_kg": 15.5,
+      "routes": [
+        {
+          "segment": "Mine to smelter",
+          "distance_km": 200,
+          "mode": "rail",
+          "emissions_kg": 8.2
+        },
+        {
+          "segment": "Smelter to manufacturer",
+          "distance_km": 150,
+          "mode": "truck",
+          "emissions_kg": 7.3
+        }
+      ]
+    },
+    "lifecycle_phases": {
+      "extraction": {
+        "co2_kg": 45.2,
+        "percentage": 36.6,
+        "notes": "Bauxite mining and processing"
+      },
+      "processing": {
+        "co2_kg": 52.8,
+        "percentage": 42.8,
+        "notes": "Smelting and alloy production (energy-intensive)"
+      },
+      "transport": {
+        "co2_kg": 15.5,
+        "percentage": 12.6,
+        "notes": "Multi-modal transportation"
+      },
+      "use_phase": {
+        "co2_kg": 0,
+        "percentage": 0,
+        "notes": "Negligible emissions during use"
+      },
+      "end_of_life": {
+        "co2_kg": 10.0,
+        "percentage": 8.1,
+        "notes": "Collection, sorting, and remelting"
+      }
+    },
+    "circularity_metrics": {
+      "material_circularity_indicator": 0.67,
+      "recyclability_score": 0.95,
+      "recycled_input_rate": 0.30,
+      "utility_factor": 0.85,
+      "end_of_life_recovery_rate": 0.92
+    },
+    "improvement_scenarios": [
+      {
+        "scenario": "50% recycled content",
+        "co2_reduction_kg": 30.8,
+        "co2_reduction_percent": 25,
+        "circularity_score_improvement": 15
+      },
+      {
+        "scenario": "100% renewable energy",
+        "co2_reduction_kg": 49.4,
+        "co2_reduction_percent": 40,
+        "circularity_score_improvement": 8
+      },
+      {
+        "scenario": "Optimized logistics",
+        "co2_reduction_kg": 3.1,
+        "co2_reduction_percent": 2.5,
+        "circularity_score_improvement": 2
+      }
+    ],
+    "data_sources": [
+      "Ecoinvent 3.8",
+      "GaBi Professional Database",
+      "European Aluminum Association LCA data",
+      "ISO 14044:2006 methodology"
+    ]
+  }
+}
