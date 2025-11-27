@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LCA Assistant</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="flex items-center gap-sm">
+        <div class="logo">🔄</div>
+        <div>
+          <h1>LCA Assistant</h1>
+          <p class="text-muted" style="font-size: 11px;">Life Cycle & Circularity Analysis</p>
+        </div>
+      </div>
+      <button id="optionsBtn" class="btn-icon" title="Options" aria-label="Open options">
+        ⚙️
+      </button>
+    </header>
+
+    <!-- Main Actions -->
+    <section class="action-section">
+      <div class="btn-group">
+        <button id="scanBtn" class="btn btn-primary w-full">
+          <span>📄</span> Scan Page
+        </button>
+        <button id="jobsBtn" class="btn btn-secondary">
+          <span>📋</span> Jobs
+        </button>
+      </div>
+    </section>
+
+    <!-- Page Preview -->
+    <section class="preview-section card">
+      <div class="flex justify-between items-center mb-sm">
+        <label class="form-label" style="margin: 0;">Extracted Content</label>
+        <span id="charCount" class="text-muted text-mono">0 chars</span>
+      </div>
+      <textarea 
+        id="extractedText" 
+        class="form-textarea" 
+        placeholder="Click 'Scan Page' to extract content from the current page..."
+        rows="4"
+      ></textarea>
+      <div id="pageInfo" class="page-info" style="display: none;">
+        <div class="text-muted text-mono" style="font-size: 11px;">
+          <div id="pageUrl"></div>
+          <div id="pageTitle"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LCA Parameters -->
+    <section class="parameters-section card">
+      <h3>LCA Parameters</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="material">Material</label>
+          <select id="material" class="form-select">
+            <option value="aluminium">Aluminium</option>
+            <option value="copper">Copper</option>
+            <option value="steel">Steel</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="recycledPercent">Recycled Content (%)</label>
+          <input 
+            type="number" 
+            id="recycledPercent" 
+            class="form-input" 
+            min="0" 
+            max="100" 
+            value="30"
+            placeholder="0-100"
+          >
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="energyKwh">Energy (kWh)</label>
+          <input 
+            type="number" 
+            id="energyKwh" 
+            class="form-input" 
+            min="0" 
+            value="100"
+            placeholder="Energy consumption"
+          >
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="transportKm">Transport (km)</label>
+          <input 
+            type="number" 
+            id="transportKm" 
+            class="form-input" 
+            min="0" 
+            value="50"
+            placeholder="Distance"
+          >
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-sm mt-sm">
+        <input type="checkbox" id="requireSelenium" checked>
+        <label for="requireSelenium" style="font-size: 13px; cursor: pointer;">
+          Use Selenium (deep extraction)
+        </label>
+      </div>
+    </section>
+
+    <!-- Submit Section -->
+    <section class="submit-section">
+      <button id="submitBtn" class="btn btn-success w-full" disabled>
+        <span id="submitIcon">🚀</span>
+        <span id="submitText">Send to Backend</span>
+      </button>
+      <div id="submitStatus" class="status-message" style="display: none;"></div>
+    </section>
+
+    <!-- Mock Mode -->
+    <section class="mock-section">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-sm">
+          <input type="checkbox" id="mockMode">
+          <label for="mockMode" style="font-size: 13px; cursor: pointer;">
+            Mock Mode (Demo)
+          </label>
+        </div>
+        <button id="useMockBtn" class="btn btn-sm btn-secondary" style="display: none;">
+          Use Mock Response
+        </button>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="resultsSection" class="results-section" style="display: none;">
+      <div class="card">
+        <h3>Analysis Results</h3>
+        <div class="divider"></div>
+        
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="metric-card metric-primary">
+            <div class="metric-label">Circularity Score</div>
+            <div class="metric-value" id="circularityScore">--</div>
+            <div class="progress-bar mt-sm">
+              <div id="circularityProgress" class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+          
+          <div class="metric-card metric-secondary">
+            <div class="metric-label">CO₂ Emissions</div>
+            <div class="metric-value" id="co2Value">--</div>
+            <div class="metric-unit">kg CO₂e</div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-label">Recycled Content</div>
+            <div class="metric-value" id="recycledValue">--</div>
+            <div class="metric-unit">%</div>
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div id="recommendationsSection" style="display: none;">
+          <h4 class="mt-md mb-sm">💡 Recommendations</h4>
+          <ul id="recommendationsList" class="recommendations-list"></ul>
+        </div>
+
+        <!-- Raw JSON Toggle -->
+        <details class="mt-md">
+          <summary style="cursor: pointer; font-size: 13px; font-weight: 500; color: var(--gray-600);">
+            View Raw JSON
+          </summary>
+          <pre id="rawJson" class="raw-json"></pre>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
